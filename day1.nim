@@ -2,10 +2,10 @@ let ns = @["zero","one","two","three","four","five","six","seven","eight","nine"
 let nd = @["0","1","2","3","4","5","6","7","8","9"]
 proc getd(s: string, l: int, ss: seq[string]): int =
   for d, sz in ss:
-    let n = sz.len()-1
-    if s[l..^1].len()-1 < n:
+    let n = sz.len()
+    if s[l..^1].len() < n:
       continue
-    elif s[l..l+n] == sz:
+    elif s[l..l+n-1] == sz:
       return d
   return -1
 
@@ -14,11 +14,11 @@ proc getn(s: string): int =
   var ln, rn = -1
   while ln < 0 or rn < 0:
     while ln < 0 and l <= r:
-      if s[l] > 'Z': ln = getd(s, l, ns)
+      if s[l] > '9': ln = getd(s, l, ns)
       else: ln = getd(s, l, nd)
       l+=1
     while rn < 0 and r >= l:
-      if s[r] > 'Z': rn = getd(s, r, ns)
+      if s[r] > '9': rn = getd(s, r, ns)
       else: rn = getd(s, r, nd)
       r-=1
     if r < l and rn < 0: rn = ln
