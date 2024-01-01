@@ -1,4 +1,4 @@
-import std/[strutils, strformat, math]
+import std/[strutils, math]
 
 var points, i = 0
 var ns: seq[int]
